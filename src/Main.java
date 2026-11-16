@@ -1,6 +1,5 @@
 
 public class Main {
-
     public static void main(String[] args) {
         BankAccount a1 = new BankAccount("Bank 1", 10000);
         BankAccount a2 = new BankAccount("Bank 2", 20000);

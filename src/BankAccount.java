@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-public class BankAccount {
+class BankAccount {
     private int accountId;
     private String ownerName;
     private double balance;
@@ -10,12 +10,14 @@ public class BankAccount {
 
 
     public BankAccount(String ownerName) {
+        this.ownerName = ownerName;
         balance = 0;
         nextID++;
         totalAccounts++;
     }
 
     public BankAccount(String ownerName, double initialBalance) {
+        this.ownerName = ownerName;
         balance = initialBalance >= 0 ? initialBalance : 0;
         nextID++;
         totalAccounts++;
@@ -38,7 +40,7 @@ public class BankAccount {
         if (destination == null || destination == this) return false;
         if (amount > balance) return false;
 
-        destination.balance += amount;
+        destination.addBalance(amount);
         return true;
     }
 
@@ -92,6 +94,14 @@ public class BankAccount {
 
     public void setOwnerName(String ownerName) {
         if (!Objects.equals(ownerName, "")) this.ownerName = ownerName;
+    }
+
+    public void setBalance(double balance) {
+        if(isValidAmount(balance)) this.balance = balance;
+    }
+
+    public void addBalance(double amount) {
+        if(isValidAmount(amount)) this.balance += amount;
     }
 
     public static int getTotalAccounts() {
